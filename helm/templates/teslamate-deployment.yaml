@@ -55,7 +55,7 @@ spec:
             configMapKeyRef:
               key: TESLAMATE_VERSION
               name: env
-        image: 'teslamate/teslamate:'
+        image: 'teslamate/teslamate:{{ .Values.version }}'
         imagePullPolicy: ""
         name: teslamate
         ports:

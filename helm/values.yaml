@@ -3,4 +3,4 @@ database:
   user: tes_user
   password: tes_pass
 api_key: api-key
-version: v1.27.2
+version: 1.27.2
