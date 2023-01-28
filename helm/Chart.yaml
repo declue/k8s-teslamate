@@ -4,9 +4,6 @@ version: v1.27.2
 apiVersion: v1
 keywords:
   - teslamate
-sources:
-  - https://github.com/adriankumpf/teslamate
-
 icon: https://en.wikipedia.org/wiki/File:Tesla_logo.png
 home: https://github.com/declue/k8s-teslamate
 appVersion: v1
