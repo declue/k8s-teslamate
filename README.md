@@ -14,3 +14,8 @@ kompose convert -c
 ```
 helm package helm
 ```
+
+# helm index 생성
+```
+helm repo index .
+```
