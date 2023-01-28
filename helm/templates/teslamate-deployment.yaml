@@ -27,7 +27,7 @@ spec:
       containers:
       - env:
         - name: DATABASE_HOST
-          value: database
+          value: database-svc
         - name: DATABASE_NAME
           valueFrom:
             configMapKeyRef:
@@ -50,16 +50,13 @@ spec:
               name: env
         - name: MQTT_HOST
           value: mosquitto
-        - name: TESLAMATE_VERSION
-          valueFrom:
-            configMapKeyRef:
-              key: TESLAMATE_VERSION
-              name: env
         image: 'teslamate/teslamate:{{ .Values.version }}'
         imagePullPolicy: ""
         name: teslamate
         ports:
         - containerPort: 4000
+          protocol: TCP
+          name: "http-4000"
         resources: {}
         securityContext:
           capabilities:

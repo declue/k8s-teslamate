@@ -10,9 +10,10 @@ metadata:
   name: teslamate
 spec:
   ports:
-  - name: "4000"
+  - name: "http-4000"
     port: 4000
     targetPort: 4000
+    protocol: TCP
   selector:
     io.kompose.service: teslamate
 status:

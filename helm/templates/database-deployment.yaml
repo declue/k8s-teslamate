@@ -26,37 +26,28 @@ spec:
     spec:
       containers:
       - env:
-        - name: DATABASE_NAME
+        - name: POSTGRES_DB
           valueFrom:
             configMapKeyRef:
               key: DATABASE_NAME
               name: env
-        - name: DATABASE_PASS
+        - name: POSTGRES_PASSWORD
           valueFrom:
             configMapKeyRef:
               key: DATABASE_PASS
               name: env
-        - name: DATABASE_USER
+        - name: POSTGRES_USER
           valueFrom:
             configMapKeyRef:
               key: DATABASE_USER
               name: env
-        - name: ENCRYPTION_KEY
-          valueFrom:
-            configMapKeyRef:
-              key: ENCRYPTION_KEY
-              name: env
-        - name: POSTGRES_DB
-        - name: POSTGRES_PASSWORD
-        - name: POSTGRES_USER
-        - name: TESLAMATE_VERSION
-          valueFrom:
-            configMapKeyRef:
-              key: TESLAMATE_VERSION
-              name: env
         image: postgres:13
         imagePullPolicy: ""
         name: database
+        ports:
+        - containerPort: 5432
+          name: "tcp-5432"
+          protocol: TCP
         resources: {}
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
