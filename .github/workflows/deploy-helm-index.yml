@@ -26,8 +26,12 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     steps:
+      - uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: "Asia/Seoul"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install Helm
