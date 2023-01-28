@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mosquitto
+  name: mosquitto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mosquitto
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mosquitto
+    spec:
+      containers:
+      - args:
+        - mosquitto
+        - -c
+        - /mosquitto-no-auth.conf
+        image: eclipse-mosquitto:2
+        imagePullPolicy: ""
+        name: mosquitto
+        ports:
+        - containerPort: 1883
+        resources: {}
+        volumeMounts:
+        - mountPath: /mosquitto/config
+          name: mosquitto-claim0
+        - mountPath: /mosquitto/data
+          name: mosquitto-claim1
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: mosquitto-claim0
+        persistentVolumeClaim:
+          claimName: mosquitto-claim0
+      - name: mosquitto-claim1
+        persistentVolumeClaim:
+          claimName: mosquitto-claim1
+status: {}

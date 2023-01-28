@@ -1,0 +1,13 @@
+apiVersion: v1
+data:
+  DATABASE_NAME: teslamate
+  DATABASE_PASS: teslamate_qlqjs
+  DATABASE_USER: teslamate_user
+  ENCRYPTION_KEY: key
+  TESLAMATE_VERSION: 1.27.2
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: database-env
+  name: env

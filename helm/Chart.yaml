@@ -1,0 +1,10 @@
+name: Teslamate
+description: Teslamte에 대한 Helm Chart
+version: v1.27.2
+apiVersion: v1
+keywords:
+  - teslamate
+sources:
+  - helm
+home: https://github.com/declue/k8s-teslamate
+

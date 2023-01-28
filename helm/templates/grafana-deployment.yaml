@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: grafana
+  name: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: grafana
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: grafana
+    spec:
+      containers:
+      - env:
+        - name: DATABASE_HOST
+          value: database
+        - name: DATABASE_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_NAME
+              name: env
+        - name: DATABASE_PASS
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_PASS
+              name: env
+        - name: DATABASE_USER
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_USER
+              name: env
+        - name: ENCRYPTION_KEY
+          valueFrom:
+            configMapKeyRef:
+              key: ENCRYPTION_KEY
+              name: env
+        - name: TESLAMATE_VERSION
+          valueFrom:
+            configMapKeyRef:
+              key: TESLAMATE_VERSION
+              name: env
+        image: teslamate/grafana:latest
+        imagePullPolicy: ""
+        name: grafana
+        ports:
+        - containerPort: 3000
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/grafana
+          name: grafana-claim0
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: grafana-claim0
+        persistentVolumeClaim:
+          claimName: grafana-claim0
+status: {}

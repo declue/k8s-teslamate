@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: teslamate
+  name: teslamate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: teslamate
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: /snap/kompose/19/kompose-linux-amd64 convert -c
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: teslamate
+    spec:
+      containers:
+      - env:
+        - name: DATABASE_HOST
+          value: database
+        - name: DATABASE_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_NAME
+              name: env
+        - name: DATABASE_PASS
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_PASS
+              name: env
+        - name: DATABASE_USER
+          valueFrom:
+            configMapKeyRef:
+              key: DATABASE_USER
+              name: env
+        - name: ENCRYPTION_KEY
+          valueFrom:
+            configMapKeyRef:
+              key: ENCRYPTION_KEY
+              name: env
+        - name: MQTT_HOST
+          value: mosquitto
+        - name: TESLAMATE_VERSION
+          valueFrom:
+            configMapKeyRef:
+              key: TESLAMATE_VERSION
+              name: env
+        image: 'teslamate/teslamate:'
+        imagePullPolicy: ""
+        name: teslamate
+        ports:
+        - containerPort: 4000
+        resources: {}
+        securityContext:
+          capabilities:
+            drop:
+            - all
+        volumeMounts:
+        - mountPath: /opt/app/import
+          name: teslamate-claim0
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: teslamate-claim0
+        persistentVolumeClaim:
+          claimName: teslamate-claim0
+status: {}
