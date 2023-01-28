@@ -1,10 +1,10 @@
 apiVersion: v1
 data:
-  DATABASE_NAME: teslamate
-  DATABASE_PASS: teslamate_qlqjs
-  DATABASE_USER: teslamate_user
-  ENCRYPTION_KEY: key
-  TESLAMATE_VERSION: 1.27.2
+  DATABASE_NAME: {{ .Values.database.name }}
+  DATABASE_PASS: {{ .Values.database.password }}
+  DATABASE_USER: {{ .Values.database.user }}
+  ENCRYPTION_KEY: {{ .Values.api_key }}
+  TESLAMATE_VERSION: {{ .Values.version }}
 kind: ConfigMap
 metadata:
   creationTimestamp: null
