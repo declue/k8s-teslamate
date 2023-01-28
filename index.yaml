@@ -3,9 +3,9 @@ entries:
   Teslamate:
   - apiVersion: v1
     appVersion: v1
-    created: "2023-01-29T00:02:34.690711621+09:00"
+    created: "2023-01-29T00:05:09.448248304+09:00"
     description: Teslamte에 대한 Helm Chart
-    digest: 969ff1400f53be4835ae01a7efae147e88172d12c160dd25d74f0157ba9d901e
+    digest: 79c46358cbedc41619227969b85b7d1290aa7f09125022c3a2a7ab5a36ec2ced
     home: https://github.com/declue/k8s-teslamate
     icon: tesla.ico
     keywords:
@@ -14,4 +14,4 @@ entries:
     urls:
     - Teslamate-v1.27.2.tgz
     version: v1.27.2
-generated: "2023-01-29T00:02:34.690347456+09:00"
+generated: "2023-01-29T00:05:09.447841657+09:00"
