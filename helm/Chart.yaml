@@ -1,9 +1,9 @@
 name: Teslamate
 description: Teslamte에 대한 Helm Chart
-version: v1.27.2
+version: 1.27.2
+appVersion: 1.27.2
 apiVersion: v1
 keywords:
   - teslamate
 icon: tesla.ico
 home: https://github.com/declue/k8s-teslamate
-appVersion: v1
